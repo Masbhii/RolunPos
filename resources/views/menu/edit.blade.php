@@ -21,7 +21,7 @@
                     @csrf
                     @method('PUT')
                     <div class="mb-3">
-                        <label for="kode_menu">Kode Perusahaan</label>
+                        <label for="kode_menu">Kode Menu</label>
                         <input class="form-control form-control-solid" id="kode_menu" name="kode_menu" type="text" value="{{$menu->kode_menu}}" readonly>
                     </div>
 
