@@ -16,7 +16,7 @@
   </style>
   <link rel="shortcut icon" type="image/png" href="{{asset('assets/images/logos/favicon.png')}}" />
   <link rel="stylesheet" href="{{asset('assets/css/styles.min.css')}}" />
-  <!-- Untuk Tambahan DataTables -->
+  <!-- Untuk Tambahan DatacoaTables -->
   <link href="{{asset('libs/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">	
 
   <!-- Bootstrap core JavaScript-->
@@ -106,7 +106,7 @@
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="/ui-alerts.html" aria-expanded="false">
+              <a class="sidebar-link" href="{{url('/coa')}}" aria-expanded="false">
                 <span>
                   <i class="ti ti-typography"></i>
                 </span>
