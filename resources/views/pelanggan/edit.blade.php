@@ -32,15 +32,15 @@
 
                     <div class="mb-3">
                         <label for="nomor_telepon_pelanggan">Nomor Telepon Pelanggan</label>
-                        <input class="form-control form-control-solid" id="nomor_telepon_pelanggan" name="nomor_telepon_pelanggan" type="text" value="{{$nomor_telepon_pelanggan->nomor_telepon_pelanggan}}">
+                        <input class="form-control form-control-solid" id="nomor_telepon_pelanggan" name="nomor_telepon_pelanggan" type="text" value="{{$pelanggan->nomor_telepon_pelanggan}}">
                     </div>
 
                     <div class="mb-3">
                         <label for="jenis_kelamin_pelanggan">Jenis Kelamin Pelanggan</label>
                         <select class="form-select form-select-solid" id="jenis_kelamin_pelanggan" name="jenis_kelamin_pelanggan">
                             <option value="" disabled selected>PILIH JENIS KELAMIN</option>
-                            <option {{ $pelanggan->Jenis Kelamin Pelanggan === "Laki-Laki" ? "selected" : "" }} value="Laki-Laki">Laki-Laki</option>
-                            <option {{ $pelanggan->Jenis Kelamin Pelanggan === "Perempuan" ? "selected" : "" }} value="Perempuan">Perempuan</option>
+                            <option {{ $pelanggan->jenis_kelamin_pelanggan === "L" ? "selected" : "" }} value="Laki-Laki">Laki-Laki</option>
+                            <option {{ $pelanggan->jenis_kelamin_pelanggan === "P" ? "selected" : "" }} value="Perempuan">Perempuan</option>
                         </select>
                     </div>
                     

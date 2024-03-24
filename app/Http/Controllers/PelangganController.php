@@ -23,7 +23,7 @@ class PelangganController extends Controller
     public function create()
     {
         $pelanggan = new Pelanggan();
-        return view('pelanggan.create', ['pelanggan' => $pelanggan->getKodePelanggan()]);
+        return view('pelanggan.create', ['kode_pelanggan' => $pelanggan->getKodePelanggan()]);
     }
 
     /**
@@ -81,8 +81,9 @@ class PelangganController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pelanggan $pelanggan)
+    public function destroy($id)
     {
+        $pelanggan = Pelanggan::find($id);
         $pelanggan->delete();
 
         return redirect()->route('pelanggan.index')->with('success','Data Berhasil di Hapus');

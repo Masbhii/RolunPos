@@ -13,7 +13,7 @@
                             <label for="kode_pelanggan" class="col-md-4 col-form-label text-md-right">{{ __('Kode Pelanggan') }}</label>
 
                             <div class="col-md-6">
-                                <input id="kode_pelanggan" type="text" class="form-control @error('kode_pelanggan') is-invalid @enderror" name="kode_pelanggan" value="{{ old('kode_pelanggan') }}" required autocomplete="kode_pelanggan" autofocus>
+                                <input id="kode_pelanggan" type="text" class="form-control @error('kode_pelanggan') is-invalid @enderror" name="kode_pelanggan" value="{{ $kode_pelanggan }}" required readonly>
 
                                 @error('kode_pelanggan')
                                     <span class="invalid-feedback" role="alert">
