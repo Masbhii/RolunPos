@@ -43,9 +43,9 @@
                     <div class="mb-3">
                         <label for="jenis_kelamin">Jenis Kelamin</label>
                         <select class="form-select form-select-solid" id="jenis_kelamin" name="jenis_kelamin">
-                            <option value="" disabled {{ old('jenis_kelamin', $pegawai->jenis_kelamin) == '' ? 'selected' : '' }}>PILIH JENIS KELAMIN</option>
-                            <option value="Pria" {{ old('jenis_kelamin', $pegawai->jenis_kelamin) == 'Pria' ? 'selected' : '' }}>Pria</option>
-                            <option value="Wanita" {{ old('jenis_kelamin', $pegawai->jenis_kelamin) == 'Wanita' ? 'selected' : '' }}>Wanita</option>
+                            <option value="" disabled selected>PILIH JENIS KELAMIN</option>
+                            <option value="Pria" {{ $pegawai->jenis_kelamin == "Pria" ? "selected" : "" }}>Pria</option>
+                            <option value="Wanita" {{ $pegawai->jenis_kelamin == "Wanita" ? "selected" : "" }}>Wanita</option>
                         </select>
                     </div>
                     
@@ -59,4 +59,4 @@
                     
                 </form>
                 <!-- Akhir Dari Input Form -->
-<x-app-layout>
+</x-app-layout>

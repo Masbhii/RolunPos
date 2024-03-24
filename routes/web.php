@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\CoaController;
@@ -26,6 +27,9 @@ Route::get('/menu/destroy/{id}', [MenuController::class, 'destroy'])->middleware
 
 Route::resource('/pelanggan', PelangganController::class)->middleware(['auth']);
 Route::get('/pelanggan/destroy/{id}', [PelangganController::class, 'destroy'])->middleware(['auth']);
+
+Route::resource('/pegawai', PegawaiController::class)->middleware(['auth']);
+Route::get('/pegawai/destroy/{id}', [PegawaiController::class, 'destroy'])->middleware(['auth']);
 
 Route::resource('/kategori', KategoriController::class)->middleware(['auth']);
 Route::get('/kategori/destroy/{id}', [KategoriController::class, 'destroy'])->middleware(['auth']);

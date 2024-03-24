@@ -37,7 +37,7 @@ class PegawaiController extends Controller
             'kode_pegawai' => 'required',
             'nama_pegawai' => 'required',
             'jabatan' => 'required',
-            'nomor_telepon' => 'required|integer',
+            'nomor_telepon' => 'required',
             'jenis_kelamin' => 'required|in:Pria,Wanita',
         ]);
 
@@ -72,7 +72,7 @@ class PegawaiController extends Controller
             'kode_pegawai' => 'required',
             'nama_pegawai' => 'required',
             'jabatan' => 'required',
-            'nomor_telepon' => 'required|integer',
+            'nomor_telepon' => 'required',
             'jenis_kelamin' => 'required|in:Pria,Wanita',
         ]);
     
