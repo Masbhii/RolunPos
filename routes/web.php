@@ -3,6 +3,8 @@
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\CoaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,5 +26,12 @@ Route::get('/menu/destroy/{id}', [MenuController::class, 'destroy'])->middleware
 
 Route::resource('/pelanggan', PelangganController::class)->middleware(['auth']);
 Route::get('/pelanggan/destroy/{id}', [PelangganController::class, 'destroy'])->middleware(['auth']);
+
+Route::resource('/kategori', KategoriController::class)->middleware(['auth']);
+Route::get('/kategori/destroy/{id}', [KategoriController::class, 'destroy'])->middleware(['auth']);
+
+Route::resource('/coa', CoaController::class)->middleware(['auth']);
+Route::get('/coa/destroy/{id}', [CoaController::class, 'destroy'])->middleware(['auth']);
+
 
 require __DIR__.'/auth.php';
