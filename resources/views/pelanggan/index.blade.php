@@ -5,15 +5,15 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-md-12">
-                  <h5 class="card-title fw-semibold mb-4">{{ $title }}</h5>
+                  <h5 class="card-title fw-semibold mb-4"></h5>
                   <div class="card">
 
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">Master Data Menu</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Master Data Pelanggan</h6>
                             
                             <!-- Tombol Tambah Data -->
-                            <a href="{{ url('/menu/create') }}" class="btn btn-primary btn-icon-split btn-sm">
+                            <a href="{{ url('/pelanggan/create') }}" class="btn btn-primary btn-icon-split btn-sm">
                                 <span class="icon text-white-50">
                                     <i class="ti ti-plus"></i>
                                 </span>
@@ -29,41 +29,38 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th>Kode Menu</th>
-                                            <th>Nama Menu</th>
-                                            <th>Deskripsi</th>
-                                            <th>Harga</th>
-                                            <th>Kategori</th>
+                                            <th>Kode Pelanggan</th>
+                                            <th>Nama Pelanggan</th>
+                                            <th>Nomor Telepon Pelanggan</th>
+                                            <th>Jenis Kelamin</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tfoot class="thead-dark">
                                         <tr>
-                                            <th>Kode Menu</th>
-                                            <th>Nama Menu</th>
-                                            <th>Deskripsi</th>
-                                            <th>Harga</th>
-                                            <th>Kategori</th>
+                                            <th>Kode Pelanggan</th>
+                                            <th>Nama Pelanggan</th>
+                                            <th>Nomor Telepon Pelanggan</th>
+                                            <th>Jenis Kelamin</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                    @foreach ($data as $p)
+                                    @foreach ($pelanggan as $p)
                                         <tr>
-                                            <td>{{ $p->kode_menu }}</td>
-                                            <td>{{ $p->nama_menu }}</td>
-                                            <td>{{ $p->deskripsi }}</td>
-                                            <td>{{ $p->harga }}</td>
-                                            <td>{{ $p->kategori }}</td>
+                                            <td>{{ $p->kode_pelanggan }}</td>
+                                            <td>{{ $p->nama_pelanggan }}</td>
+                                            <td>{{ $p->nomor_telepon_pelanggan }}</td>
+                                            <td>{{ $p->jenis_kelamin_pelanggan }}</td>
                                             <td>
-                                                    <a href="{{ route('menu.edit', $p->id_menu) }}" class="btn btn-success btn-icon-split btn-sm">
+                                                    <a href="{{ route('pelanggan.edit', $p->id_pelanggan) }}" class="btn btn-success btn-icon-split btn-sm">
                                                         <span class="icon text-white-50">
                                                             <i class="ti ti-check"></i>
                                                         </span>
                                                         <span class="text">Ubah</span>
                                                     </a>
 
-                                                    <a href="#" onclick="deleteConfirm(this); return false;" data-id="{{ $p->id_menu }}" class="btn btn-danger btn-icon-split btn-sm">
+                                                    <a href="#" onclick="deleteConfirm(this); return false;" data-id="{{ $p->id_pelanggan }}" class="btn btn-danger btn-icon-split btn-sm">
                                                         <span class="icon text-white-50">
                                                             <i class="ti ti-minus"></i>
                                                         </span>
@@ -96,7 +93,7 @@
                 id = e.getAttribute('data-id');
 
                 // const str = 'Hello' + id + 'World';
-                var url3 = "{{url('menu/destroy/')}}";
+                var url3 = "{{url('pelanggan/destroy/')}}";
                 var url4 = url3.concat("/",id);
                 // console.log(url4);
 

@@ -75,16 +75,17 @@ class PelangganController extends Controller
         $pelanggan->update($validated);
     
         return redirect()->route('pelanggan.index')->with('success','Data Berhasil di Ubah');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Pelanggan $pelanggan)
     {
-        $pelanggan = Pelanggan::findOrFail($id);
         $pelanggan->delete();
 
         return redirect()->route('pelanggan.index')->with('success','Data Berhasil di Hapus');
+
     }
 }

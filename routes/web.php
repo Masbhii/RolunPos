@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,5 +21,8 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('/menu', MenuController::class)->middleware(['auth']);
 Route::get('/menu/destroy/{id}', [MenuController::class, 'destroy'])->middleware(['auth']);
+
+Route::resource('/pelanggan', PelangganController::class)->middleware(['auth']);
+Route::get('/pelanggan/destroy/{id}', [PelangganController::class, 'destroy'])->middleware(['auth']);
 
 require __DIR__.'/auth.php';
