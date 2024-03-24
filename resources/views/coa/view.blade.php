@@ -4,12 +4,12 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-md-12">
-                  <h5 class="card-title fw-semibold mb-4">Perusahaan</h5>
+                  <h5 class="card-title fw-semibold mb-4">Akun</h5>
                   <div class="card">
 
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">Master Data Perusahaan</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Master Data Akun</h6>
                             
                             <!-- Tombol Tambah Data -->
                             <a href="{{ url('/coa/create') }}" class="btn btn-primary btn-icon-split btn-sm">
@@ -30,7 +30,7 @@
                                         <tr>
                                             <th>Kode</th>
                                             <th>Nama</th>
-                                            <th>Alamat</th>
+                                            <th>Header</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -38,7 +38,7 @@
                                         <tr>
                                             <th>Kode</th>
                                             <th>Nama</th>
-                                            <th>Alamat</th>
+                                            <th>Header</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </tfoot>
