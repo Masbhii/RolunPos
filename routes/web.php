@@ -1,11 +1,15 @@
 <?php
 
+use App\Http\Controllers\BarangController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\CoaController;
+use App\Http\Controllers\PembelianController;
+use App\Http\Controllers\SupplierController;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -36,6 +40,12 @@ Route::get('/kategori/destroy/{id}', [KategoriController::class, 'destroy'])->mi
 
 Route::resource('/coa', CoaController::class)->middleware(['auth']);
 Route::get('/coa/destroy/{id}', [CoaController::class, 'destroy'])->middleware(['auth']);
+
+Route::resource('/barang', BarangController::class)->middleware(['auth']);
+Route::get('/barang/destroy/{id}',[BarangController::class, 'destroy'])->middleware(['auth']);
+
+Route::resource('/supplier', SupplierController::class)->middleware(['auth']);
+Route::get('/supplier/destroy/{id}',[SupplierController::class, 'destroy'])->middleware(['auth']);
 
 
 require __DIR__.'/auth.php';
