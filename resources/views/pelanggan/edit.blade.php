@@ -39,8 +39,8 @@
                         <label for="jenis_kelamin_pelanggan">Jenis Kelamin Pelanggan</label>
                         <select class="form-select form-select-solid" id="jenis_kelamin_pelanggan" name="jenis_kelamin_pelanggan">
                             <option value="" disabled selected>PILIH JENIS KELAMIN</option>
-                            <option {{ $pelanggan->jenis_kelamin_pelanggan === "L" ? "selected" : "" }} value="Laki-Laki">Laki-Laki</option>
-                            <option {{ $pelanggan->jenis_kelamin_pelanggan === "P" ? "selected" : "" }} value="Perempuan">Perempuan</option>
+                            <option {{ $pelanggan->jenis_kelamin_pelanggan === "Laki-Laki" ? "selected" : "" }} value="Laki-Laki">Laki-Laki</option>
+                            <option {{ $pelanggan->jenis_kelamin_pelanggan === "Perempuan" ? "selected" : "" }} value="Perempuan">Perempuan</option>
                         </select>
                     </div>
                     

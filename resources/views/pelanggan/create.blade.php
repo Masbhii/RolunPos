@@ -56,8 +56,8 @@
 
                             <div class="col-md-6">
                                 <select id="jenis_kelamin_pelanggan" class="form-control @error('jenis_kelamin_pelanggan') is-invalid @enderror" name="jenis_kelamin_pelanggan" required autocomplete="jenis_kelamin_pelanggan">
-                                    <option value="L">Laki-Laki</option>
-                                    <option value="P">Perempuan</option>
+                                    <option value="Laki-Laki">Laki-Laki</option>
+                                    <option value="Perempuan">Perempuan</option>
                               </select>
 
                                 @error('jenis_kelamin_pelanggan')
