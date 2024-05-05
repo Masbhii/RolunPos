@@ -11,22 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::dropIfExists('pembelian');
         Schema::create('pembelian', function (Blueprint $table) {
             $table->id();
-            $table->date('tgl_pembelian');
-            $table->string('no_pembelian');
-            $table->string('keterangan');
-            $table->string('status');
-            $table->date('tgl_jatuh_tempo');
-            $table->integer('kuantitas');
+            $table->string('nomor_pembelian');
+            $table->dateTime('tanggal_pembelian');
+            $table->string('kode_bahanbaku');
             $table->integer('harga');
-            $table->unsignedBigInteger('id_barang');
-            $table->unsignedBigInteger('id_pegawai');
-            $table->unsignedBigInteger('id_supplier');
+            $table->integer('kuantitas');
+            $table->string('foto');
+            $table->integer('deskripsi');
+            $table->integer('harga');
             $table->timestamps();
-            $table->foreign('id_supplier')->references('id')->on('supplier');
-            $table->foreign('id_barang')->references('id')->on('barang');
-            $table->foreign('id_pegawai')->references('id_pegawai')->on('pegawai');
         });
     }
 

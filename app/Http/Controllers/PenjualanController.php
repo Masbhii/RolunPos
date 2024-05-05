@@ -20,26 +20,26 @@ class PenjualanController extends Controller
 
     public static function index()
     {
-        // getViewMenu()
-        $menu = Penjualan::getMenu();
-        $id_pelanggan = Auth::id(); //dapatkan id customer dari sesi user
+        // getViewBarang()
+        $barang = Penjualan::getBarang();
+        $id_customer = Auth::id(); //dapatkan id customer dari sesi user
         return view('penjualan.view',
                 [
-                    'menu' => $menu,
-                    'jml' => Penjualan::getJmlMenu($id_pelanggan),
-                    'jml_invoice' => Penjualan::getJmlInvoice($id_pelanggan),
+                    'barang' => $barang,
+                    'jml' => Penjualan::getJmlBarang($id_customer),
+                    'jml_invoice' => Penjualan::getJmlInvoice($id_customer),
                 ]
         );
     }
 
     // dapatkan data barang berdasarkan id barang
-    public static function getDataMenu($id){
-        $menu = Penjualan::getMenuId($id);
-        if($menu)
+    public static function getDataBarang($id){
+        $barang = Penjualan::getBarangId($id);
+        if($barang)
         {
             return response()->json([
                 'status'=>200,
-                'barang'=> $menu,
+                'barang'=> $barang,
             ]);
         }
         else
@@ -53,12 +53,12 @@ class PenjualanController extends Controller
 
     // dapatkan data barang berdasarkan id barang
     public static function getDataBarangAll(){
-        $menu = Penjualan::getMenu();
-        if($menu)
+        $barang = Penjualan::getBarang();
+        if($barang)
         {
             return response()->json([
                 'status'=>200,
-                'menu'=> $menu,
+                'barang'=> $barang,
             ]);
         }
         else
@@ -72,13 +72,13 @@ class PenjualanController extends Controller
 
     // dapatkan jumlah barang untuk keranjang
     public static function getJumlahBarang(){
-        $id_pelanggan = Auth::id();
-        $jml_menu = Penjualan::getJmlMenu($id_pelanggan);
-        if($jml_menu)
+        $id_customer = Auth::id();
+        $jml_barang = Penjualan::getJmlBarang($id_customer);
+        if($jml_barang)
         {
             return response()->json([
                 'status'=>200,
-                'jumlah'=> $jml_menu,
+                'jumlah'=> $jml_barang,
             ]);
         }
         else
@@ -92,13 +92,13 @@ class PenjualanController extends Controller
 
     // dapatkan jumlah barang untuk keranjang
     public static function getInvoice(){
-        $id_pelanggan = Auth::id();
-        $jml_menu = Penjualan::getJmlInvoice($id_pelanggan);
-        if($jml_menu)
+        $id_customer = Auth::id();
+        $jml_barang = Penjualan::getJmlInvoice($id_customer);
+        if($jml_barang)
         {
             return response()->json([
                 'status'=>200,
-                'jmlinvoice'=> $jml_menu,
+                'jmlinvoice'=> $jml_barang,
             ]);
         }
         else
@@ -153,17 +153,17 @@ class PenjualanController extends Controller
             
             if($request->input('tipeproses')=='tambah'){
 
-                $id_pelanggan = Auth::id();
-                $jml_menu = $request->input('jumlah');
-                $id_menu = $request->input('idbaranghidden');
+                $id_customer = Auth::id();
+                $jml_barang = $request->input('jumlah');
+                $id_barang = $request->input('idbaranghidden');
 
-                $brg = Penjualan::getMenuId($id_menu);
+                $brg = Penjualan::getBarangId($id_barang);
                 foreach($brg as $b):
-                    $harga_menu = $b->harga;
+                    $harga_barang = $b->harga;
                 endforeach;
 
-                $total_harga = $harga_menu*$jml_menu;
-                Penjualan::inputPenjualan($id_pelanggan,$total_harga,$id_menu,$jml_menu,$harga_menu,$total_harga);
+                $total_harga = $harga_barang*$jml_barang;
+                Penjualan::inputPenjualan($id_customer,$total_harga,$id_barang,$jml_barang,$harga_barang,$total_harga);
 
                 return response()->json(
                     [
@@ -222,8 +222,8 @@ class PenjualanController extends Controller
 
     // view keranjang
     public static function keranjang(){
-        $id_pelanggan = Auth::id();
-        $keranjang = Penjualan::viewKeranjang($id_pelanggan);
+        $id_customer = Auth::id();
+        $keranjang = Penjualan::viewKeranjang($id_customer);
         return view('penjualan/viewkeranjang',
                 [
                     'keranjang' => $keranjang
@@ -247,8 +247,8 @@ class PenjualanController extends Controller
 
     // view keranjang
     public static function keranjangjson(){
-        $id_pelanggan = Auth::id();
-        $keranjang = Penjualan::viewKeranjang($id_pelanggan);
+        $id_customer = Auth::id();
+        $keranjang = Penjualan::viewKeranjang($id_customer);
         if($keranjang)
         {
             return response()->json([
@@ -267,17 +267,17 @@ class PenjualanController extends Controller
 
     // view keranjang
     public static function checkout(){
-        $id_pelanggan = Auth::id();
-        Penjualan::checkout($id_pelanggan); //proses cekout
-        $menu = Penjualan::getBarang();
+        $id_customer = Auth::id();
+        Penjualan::checkout($id_customer); //proses cekout
+        $barang = Penjualan::getBarang();
 
         return redirect('penjualan/status');
     }
 
     // invoice
     public static function invoice(){
-        $id_pelanggan = Auth::id();
-        $invoice = Penjualan::getListInvoice($id_pelanggan);
+        $id_customer = Auth::id();
+        $invoice = Penjualan::getListInvoice($id_customer);
         if($invoice)
         {
             return response()->json([
@@ -302,8 +302,8 @@ class PenjualanController extends Controller
         //hapus dari database
         Penjualan::hapuspenjualandetail($id_penjualan_detail);
 
-        $id_pelanggan = Auth::id();
-        $keranjang = Penjualan::viewKeranjang($id_pelanggan);
+        $id_customer = Auth::id();
+        $keranjang = Penjualan::viewKeranjang($id_customer);
 
         return view('penjualan/viewkeranjang',
             [
