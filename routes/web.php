@@ -47,5 +47,9 @@ Route::get('/barang/destroy/{id}',[BarangController::class, 'destroy'])->middlew
 Route::resource('/supplier', SupplierController::class)->middleware(['auth']);
 Route::get('/supplier/destroy/{id}',[SupplierController::class, 'destroy'])->middleware(['auth']);
 
+Route::get('jurnal/umum', [App\Http\Controllers\JurnalController::class,'jurnalumum'])->middleware(['auth']);
+Route::get('jurnal/viewdatajurnalumum/{periode}', [App\Http\Controllers\JurnalController::class,'viewdatajurnalumum'])->middleware(['auth']);
+Route::get('jurnal/bukubesar', [App\Http\Controllers\JurnalController::class,'bukubesar'])->middleware(['auth']);
+Route::get('jurnal/viewdatabukubesar/{periode}/{akun}', [App\Http\Controllers\JurnalController::class,'viewdatabukubesar'])->middleware(['auth']);
 
 require __DIR__.'/auth.php';

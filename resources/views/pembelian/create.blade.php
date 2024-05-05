@@ -35,8 +35,33 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="nomor_pembelian">Nomor pembelian</label>
-                        <input class="form-control form-control-solid" id="nomor_pembelian" name="nomor_pembelian" type="text" placeholder="Contoh: 081234567890" value="{{old('nomor_pembelian')}}">
+                        <label for="keterangan">Keterangan</label>
+                        <input class="form-control form-control-solid" id="keterangan" name="keterangan" type="text" placeholder="Contoh: 081234567890" value="{{old('keterangan')}}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="status">Status</label>
+                        <input class="form-control form-control-solid" id="status" name="status" type="text" placeholder="Contoh: 081234567890" value="{{old('status')}}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="tgl_jatuh_tempo">Tanggal Jatuh Tempo</label>
+                        <input class="form-control form-control-solid" id="tgl_jatuh_tempo" name="tgl_jatuh_tempo" type="text" placeholder="Contoh: 081234567890" value="{{old('tgl_jatuh_tempo')}}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="kuantitas">Kuantitas</label>
+                        <input class="form-control form-control-solid" id="kuantitas" name="kuantitas" type="text" placeholder="Contoh: 081234567890" value="{{old('kuantitas')}}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="harga">Harga</label>
+                        <input class="form-control form-control-solid" id="harga" name="harga" type="text" placeholder="Contoh: 081234567890" value="{{old('harga')}}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="harga">id_barang</label>
+                        <input class="form-control form-control-solid" id="harga" name="harga" type="text" placeholder="Contoh: 081234567890" value="{{old('harga')}}">
                     </div>
 
                     <div class="mb-3">
