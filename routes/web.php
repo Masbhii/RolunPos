@@ -9,6 +9,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\CoaController;
 use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\PembayaranController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +47,15 @@ Route::get('/barang/destroy/{id}',[BarangController::class, 'destroy'])->middlew
 
 Route::resource('/supplier', SupplierController::class)->middleware(['auth']);
 Route::get('/supplier/destroy/{id}',[SupplierController::class, 'destroy'])->middleware(['auth']);
+
+// transaksi pembayaran viewkeranjang
+Route::get('pembayaran/viewkeranjang', [App\Http\Controllers\PembayaranController::class,'viewkeranjang'])->middleware(['auth']);
+Route::get('pembayaran/viewstatus', [App\Http\Controllers\PembayaranController::class,'viewstatus'])->middleware(['auth']); 
+Route::get('pembayaran/viewapprovalstatus', [App\Http\Controllers\PembayaranController::class,'viewapprovalstatus'])->middleware(['auth']);
+Route::get('pembayaran/approve/{no_transaksi}', [App\Http\Controllers\PembayaranController::class,'approve'])->middleware(['auth']);
+Route::get('pembayaran/unapprove/{no_transaksi}', [App\Http\Controllers\PembayaranController::class,'unapprove'])->middleware(['auth']);
+Route::get('pembayaran/viewstatusPG', [App\Http\Controllers\PembayaranController::class,'viewstatusPG'])->middleware(['auth']);
+Route::resource('pembayaran', PembayaranController::class)->middleware(['auth']);
 
 
 require __DIR__.'/auth.php';
