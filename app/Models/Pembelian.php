@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 use Illuminate\Support\Facades\DB;
 
 class Pembelian extends Model
@@ -11,36 +13,28 @@ class Pembelian extends Model
     use HasFactory;
     protected $table = 'pembelian';
     protected $primaryKey = 'id';
-    protected $fillable = [
-        'tgl_pembelian',
-        'no_pembelian',
-        'keterangan',
-        'status',
-        'tgl_jatuh_tempo',
-        'kuantitas',
-        'harga',
-        'id_barang',
-        'id_pegawai',
-        'id_supplier'
-    ];
+    // list kolom yang bisa diisi
+    protected $fillable = ['nomor_pembelian', 'tanggal_pembelian', 'kode_barang', 'harga', 'kuantitas', 'foto','deskripsi','harga'];
 
-    public static function getKodePembelian()
+    // query nilai max dari kode pegawai untuk generate otomatis kode pegawai
+
+    public function getNomorPembelian()
     {
-        // query kode barang
-        $sql = "SELECT IFNULL(MAX(no_pembelian), 'PB-000') as no_pembelian
+        // query kode pegawai
+        $sql = "SELECT IFNULL(MAX(no_pembelian), 'PB-000') as nomor_pembelian 
                 FROM pembelian";
-        $kodepembelian = DB::select($sql);
+        $nomor_pembelian = DB::select($sql);
 
         // cacah hasilnya
-        foreach ($kodepembelian as $kdpem) {
-            $kd = $kdpem->no_pembelian;
+        foreach ($nomor_pembelian as $np) {
+            $ip = $np->nomor_pembelian;
         }
-        // Mengambil substring tiga digit akhir dari string SP-000
-        $noawal = substr($kd,-3);
-        $noakhir = $noawal+1; //menambahkan 1, hasilnya adalah integer cth 1
-        
-        //menyambung dengan string SP-001
-        $noakhir = 'PEM-'.str_pad($noakhir,3,"0",STR_PAD_LEFT); 
+        // Mengambil substring tiga digit akhir dari string PG-000
+        $noawal = substr($ip, -3);
+        $noakhir = $noawal + 1; //menambahkan 1, hasilnya adalah integer cth 1
+
+        //menyambung dengan string PR-001
+        $noakhir = 'PB-' . str_pad($noakhir, 3, "0", STR_PAD_LEFT);
 
         return $noakhir;
     }

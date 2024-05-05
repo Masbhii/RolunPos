@@ -1,8 +1,8 @@
 <x-app-layout>
-    <div class="container-fluid">
+<div class="container-fluid">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4">Edit Pegawai</h5>
+            <h5 class="card-title fw-semibold mb-4">Data Pembelian</h5>
 
                 <!-- Display Error jika ada error -->
                 @if ($errors->any())
@@ -17,46 +17,59 @@
                 <!-- Akhir Display Error -->
 
                 <!-- Awal Dari Input Form -->
-                <form action="{{ route('pegawai.update', $pegawai->id_pegawai) }}" method="post">
+                <form action="{{ route('pembelian.update', $pembelian->id) }}" method="post">
                     @csrf
                     @method('PUT')
-                    <div class="mb-3">
-                        <label for="kode_pegawai">Kode Pegawai</label>
-                        <input class="form-control form-control-solid" id="kode_pegawai" name="kode_pegawai" type="text" placeholder="Contoh: PG-001" value="{{$pegawai->kode_pegawai}}" readonly>
+                    <input type="hidden" id="id_pembelian" name="id_pembelian" value="{{$pembelian->id}}">
+                    <fieldset disabled>
+                      <div class="mb-3"><label for="nomor_pembelianlabel">Nomor Pembelian</label>
+                      <input class="form-control form-control-solid" id="nomor_pembelian_tampil" name="nomor_pembelian_tampil" type="text" placeholder="Contoh: PB-001" value="{{$pembelian->nomor_pembelian}}" readonly></div>
+                  </fieldset>
+                  <input type="hidden" id="nomor_pembelian" name="nomor_pembelian" value="{{$pembelian->nomor_pembelian}}">
+
+                  <div class="mb-3"><label for="tanggal_pembelian">Tanggal Pembelian</label>
+                  <input class="form-control form-control-solid" id="tanggal_pembelian" name="tanggal_pembelian" type="date"  value="{{$pembelian->tanggal_pembelian}}">
+                  </div>
+
+                  <div class="mb-3"><label for="kode_bahanbaku">Kode Bahan Baku</label>
+                  <select name="kode_bahanbaku" id="kode_bahanbaku">
+                    @foreach($bahanbaku as $b)
+                    <option value="{{$b->kode_bahanbaku}}">{{$b->nama_bahanbaku}}</option>
+                    @endforeach
+                  </select>
+                  </div>
+
+                  <div class="mb-3"><label for="harga">Harga</label>
+                    <input class="form-control form-control-solid" id="harga" name="harga" type="text"  value="{{$pembelian->harga}}">
                     </div>
 
-                    <div class="mb-3">
-                        <label for="nama_pegawai">Nama Pegawai</label>
-                        <input class="form-control form-control-solid" id="nama_pegawai" name="nama_pegawai" type="text" placeholder="Contoh: John Doe" value="{{$pegawai->nama_pegawai}}">
-                    </div>
+                    <div class="mb-3"><label for="kuantitas">Kuantitas</label>
+                      <input class="form-control form-control-solid" id="kuantitas" name="kuantitas" type="text"  value="{{$pembelian->kuantitas}}">
+                      </div>
 
-                    <div class="mb-3">
-                        <label for="jabatan">Jabatan</label>
-                        <input class="form-control form-control-solid" id="jabatan" name="jabatan" type="text" placeholder="Contoh: Kepala Kebun" value="{{$pegawai->jabatan}}">
-                    </div>
+                    <div class="mb-3"><label for="tanggal_pembelian">Tanggal Pembelian</label>
+                      <input class="form-control form-control-solid" id="tanggal_pembelian" name="tanggal_pembelian" type="date"  value="{{$pembelian->tanggal_pembelian}}">
+                      </div>
 
-                    <div class="mb-3">
-                        <label for="nomor_telepon">Nomor Telepon</label>
-                        <input class="form-control form-control-solid" id="nomor_telepon" name="nomor_telepon" type="text" placeholder="Contoh: 081234567890" value="{{$pegawai->nomor_telepon}}">
-                    </div>
+                    <div class="mb-3"><label for="foto">Foto</label>
+                      <input class="form-control form-control-solid" id="foto" name="foto" type="integer"  value="{{$pembelian->foto}}">
+                      </div>
 
-                    <div class="mb-3">
-                        <label for="jenis_kelamin">Jenis Kelamin</label>
-                        <select class="form-select form-select-solid" id="jenis_kelamin" name="jenis_kelamin">
-                            <option value="" disabled selected>PILIH JENIS KELAMIN</option>
-                            <option value="Pria" {{ $pegawai->jenis_kelamin == "Pria" ? "selected" : "" }}>Pria</option>
-                            <option value="Wanita" {{ $pegawai->jenis_kelamin == "Wanita" ? "selected" : "" }}>Wanita</option>
-                        </select>
-                    </div>
-                    
+                    <div class="mb-3"><label for="deskripsi">Deskripsi</label>
+                      <input class="form-control form-control-solid" id="deskripsi" name="deskripsi" type="text"  value="{{$pembelian->deskripsi}}">
+                      </div>
                     <br>
                     <!-- untuk tombol simpan -->
                     
-                    <input class="col-sm-1 btn btn-success btn-sm" type="submit" value="Simpan">
+                    <input class="col-sm-1 btn btn-success btn-sm" type="submit" value="Ubah">
 
                     <!-- untuk tombol batal simpan -->
-                    <a class="col-sm-1 btn btn-dark  btn-sm" href="{{ url('/pegawai') }}" role="button">Batal</a>
+                    <a class="col-sm-1 btn btn-dark  btn-sm" href="{{ url('/perusahaan') }}" role="button">Batal</a>
                     
                 </form>
                 <!-- Akhir Dari Input Form -->
+            
+          </div>
+        </div>
+      </div>
 </x-app-layout>

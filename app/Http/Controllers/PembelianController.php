@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pembelian;
 use App\Http\Requests\StorePembelianRequest;
 use App\Http\Requests\UpdatePembelianRequest;
+use App\Models\Barang;
+use App\Models\Pembelian;
+use Illuminate\Support\Facades\DB;
 
 class PembelianController extends Controller
 {
@@ -13,8 +15,17 @@ class PembelianController extends Controller
      */
     public function index()
     {
-        $pembelian = Pembelian::all();
-        return view('pembelian.index', ['pembelian' => $pembelian]);
+        //query data
+        $pembelian = DB::table('pembelian as a')
+            ->leftjoin('barang as b', 'a.id_barang', '=', 'b.id')
+            ->select('a.*', 'b.nama_barang')
+            ->get();
+        return view(
+            'pembelian.view',
+            [
+                'pembelian' => $pembelian
+            ]
+        );
     }
 
     /**
@@ -23,7 +34,17 @@ class PembelianController extends Controller
     public function create()
     {
         $pembelian = new Pembelian();
-        return view('pembelian.create', ['kode_pembelian' => $pembelian->getKodePembelian()]);
+        $barang = Barang::all();
+        // berikan kode pembelian secara otomatis
+        // 1. query dulu ke db, select max untuk mengetahui posisi terakhir 
+        return view(
+            'pembelian/create',
+            [
+                'nomor_pembelian' => $pembelian->getNomorPembelian(),
+                'barang' => $barang
+            ]
+        );
+        // return view('pembelian/view');
     }
 
     /**
@@ -31,29 +52,29 @@ class PembelianController extends Controller
      */
     public function store(StorePembelianRequest $request)
     {
+        //digunakan untuk validasi kemudian kalau ok tidak ada masalah baru disimpan ke db
         $validated = $request->validate([
-        'tgl_pembelian'=> 'required',
-        'no_pembelian'=> 'required',
-        'keterangan'=> 'required',
-        'status'=> 'required',
-        'tgl_jatuh_tempo'=> 'required',
-        'kuantitas'=> 'required',
-        'harga'=> 'required',
-        'id_barang'=> 'required',
-        'id_pegawai'=> 'required',
-        'id_supplier'=> 'required',
+            'nomor_pembelian' => 'required',
+            'tanggal_pembelian' => 'required',
+            'kode_barang' => 'required',
+            'harga' => 'required',
+            'kuantitas' => 'required',
+            'kuantitas' => 'required',
+            'foto' => 'required',
+            'deskripsi' => 'required',
+            'harga' => 'required',
         ]);
 
         // masukkan ke db
         Pembelian::create($request->all());
-        
-        return redirect()->route('pembelian.index')->with('success','Data Berhasil di Input');
+
+        return redirect()->route('pembelian.index')->with('success', 'Data Berhasil di Input');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Pembelian $pembelian)
+    public function show(pembelian $pembelian)
     {
         //
     }
@@ -61,9 +82,9 @@ class PembelianController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Pembelian $pembelian)
+    public function edit(pembelian $pembelian)
     {
-        return view('pembelian.edit', compact('pembelian'));
+        return view('pembelian.edit', ['pembelian' => $pembelian, 'barang' => Barang::all()]);
     }
 
     /**
@@ -71,23 +92,22 @@ class PembelianController extends Controller
      */
     public function update(UpdatePembelianRequest $request, Pembelian $pembelian)
     {
+        //digunakan untuk validasi kemudian kalau ok tidak ada masalah baru diupdate ke db
         $validated = $request->validate([
-        'tgl_pembelian'=> 'required',
-        'no_pembelian'=> 'required',
-        'keterangan'=> 'required',
-        'status'=> 'required',
-        'tgl_jatuh_tempo'=> 'required',
-        'kuantitas'=> 'required',
-        'harga'=> 'required',
-        'id_barang'=> 'required',
-        'id_pegawai'=> 'required',
-        'id_supplier'=> 'required',
+            'nomor_pembelian' => 'required',
+            'tanggal_pembelian' => 'required',
+            'kode_barang' => 'required',
+            'harga' => 'required',
+            'kuantitas' => 'required',
+            'kuantitas' => 'required',
+            'foto' => 'required',
+            'deskripsi' => 'required',
+            'harga' => 'required',
         ]);
-        
-        $pembelian->update($validated);
-    
-        return redirect()->route('pembelian.index')->with('success','Data Berhasil di Ubah');
 
+        $pembelian->update($validated);
+
+        return redirect()->route('pembelian.index')->with('success', 'Data Berhasil di Ubah');
     }
 
     /**
@@ -95,10 +115,10 @@ class PembelianController extends Controller
      */
     public function destroy($id)
     {
-        $pembelian = Pembelian::find($id);
+        //hapus dari database
+        $pembelian = Pembelian::findOrFail($id);
         $pembelian->delete();
 
-        return redirect()->route('pembelian.index')->with('success','Data Berhasil di Hapus');
-
+        return redirect()->route('pembelian.index')->with('success', 'Data Berhasil di Hapus');
     }
 }
