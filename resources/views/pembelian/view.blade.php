@@ -1,19 +1,19 @@
 <x-app-layout>
-    <div class="container-fluid">
+      <div class="container-fluid">
         <div class="container-fluid">
           <div class="card">
             <div class="card-body">
               <div class="row">
                 <div class="col-md-12">
-                  <h5 class="card-title fw-semibold mb-4"></h5>
+                  <h5 class="card-title fw-semibold mb-4">Pembelian</h5>
                   <div class="card">
 
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">Master Data pegawai</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Master Data Pembelian</h6>
                             
                             <!-- Tombol Tambah Data -->
-                            <a href="{{ url('/pegawai/create') }}" class="btn btn-primary btn-icon-split btn-sm">
+                            <a href="{{ url('/pembelian/create') }}" class="btn btn-primary btn-icon-split btn-sm">
                                 <span class="icon text-white-50">
                                     <i class="ti ti-plus"></i>
                                 </span>
@@ -29,41 +29,33 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th>Kode pegawai</th>
-                                            <th>Nama pegawai</th>
-                                            <th>Jabatan</th>
-                                            <th>Nomor Telepon pegawai</th>
-                                            <th>Jenis Kelamin</th>
+                                            <th>Nomor Pembelian</th>
+                                            <th>Tanggal Pembelian</th>
+                                            <th>Nama Bahan Baku</th>
+                                            <th>Harga</th>
+                                            <th>Kuantitas</th>
                                             <th>Aksi</th>
+                                            <th>Deskripsi</th>
                                         </tr>
                                     </thead>
-                                    <tfoot class="thead-dark">
-                                        <tr>
-                                            <th>Kode pegawai</th>
-                                            <th>Nama pegawai</th>
-                                            <th>Jabatan</th>
-                                            <th>Nomor Telepon pegawai</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
-                                    @foreach ($pegawai as $p)
+                                    @foreach ($pembelian as $p)
                                         <tr>
-                                            <td>{{ $p->kode_pegawai }}</td>
-                                            <td>{{ $p->nama_pegawai }}</td>
-                                            <td>{{ $p->jabatan }}</td>
-                                            <td>{{ $p->nomor_telepon }}</td>
-                                            <td>{{ $p->jenis_kelamin }}</td>
+                                            <td>{{ $p->nomor_pembelian }}</td>
+                                            <td>{{ $p->tanggal_pembelian }}</td>
+                                            <td>{{ $p->nama_bahanbaku }}</td>
+                                            <td>{{ $p->harga }}</td>
+                                            <td>{{ $p->kuantitas }}</td>
+                                            <td>{{ $p->Deskripsi }}</td>
                                             <td>
-                                                    <a href="{{ route('pegawai.edit', $p->id_pegawai) }}" class="btn btn-success btn-icon-split btn-sm">
+                                                    <a href="{{ route('pembelian.edit', $p->id) }}" class="btn btn-success btn-icon-split btn-sm">
                                                         <span class="icon text-white-50">
                                                             <i class="ti ti-check"></i>
                                                         </span>
                                                         <span class="text">Ubah</span>
                                                     </a>
 
-                                                    <a href="#" onclick="deleteConfirm(this); return false;" data-id="{{ $p->id_pegawai }}" class="btn btn-danger btn-icon-split btn-sm">
+                                                    <a href="#" onclick="deleteConfirm(this); return false;" data-id="{{ $p->id }}" class="btn btn-danger btn-icon-split btn-sm">
                                                         <span class="icon text-white-50">
                                                             <i class="ti ti-minus"></i>
                                                         </span>
@@ -86,8 +78,6 @@
             </div>
           </div>
         </div>
-    </div>
-    
 
 
         <script>
@@ -96,7 +86,7 @@
                 id = e.getAttribute('data-id');
 
                 // const str = 'Hello' + id + 'World';
-                var url3 = "{{url('pegawai/destroy/')}}";
+                var url3 = "{{url('pembelian/destroy/')}}";
                 var url4 = url3.concat("/",id);
                 // console.log(url4);
 
@@ -136,5 +126,6 @@
                 </div>
                 </div>
             </div>
-        </div>
+        </div>   
+
 </x-app-layout>

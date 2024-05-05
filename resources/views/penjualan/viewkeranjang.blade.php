@@ -21,7 +21,7 @@
                                     <thead class="thead-dark">
                                         <tr>
                                             <th>No</th>
-                                            <th>Barang</th>
+                                            <th>Menu</th>
                                             <th>Harga</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -31,13 +31,13 @@
                                         <tr>
                                             <td>{{ $p->no_transaksi }}</td>
                                             <td>
-                                                <img width="150px" height="150px" id="x-2" src="{{url('barang/')}}/{{ $p->foto }}" zn_id="79">
-                                                <br>{{ $p->nama_barang }}
+                                                <img width="150px" height="150px" id="x-2" src="{{url('menu/')}}/{{ $p->foto }}" zn_id="79">
+                                                <br>{{ $p->nama_menu }}
                                             </td>
                                             <td>
                                                 <ul>
                                                     <li>Harga   : Rp {{number_format($p->harga)}}</li>
-                                                    <li>Jumlah  : {{$p->jml_barang}}</li>
+                                                    <li>Jumlah  : {{$p->jml_menu}}</li>
                                                     <li>Total   : <b>Rp {{number_format($p->total)}}</b></li>
                                                 </ul>  
                                             </td>

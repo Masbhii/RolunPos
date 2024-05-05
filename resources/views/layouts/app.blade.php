@@ -133,16 +133,14 @@
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">TRANSAKSI</span>
             </li>
+            
             <li class="sidebar-item">
-              <a class="sidebar-link" href="{{url('/penjualan')}}" aria-expanded="false">
-                <span>
-                  <i class="ti ti-login"></i>
-                </span>
-                <span class="hide-menu">Login</span>
+              <a class="sidebar-link" href="{{ url('/status')}}" aria-expanded="false">
+                <span class="hide-menu">Penjualan</span>
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="{{ url('/status')}}" aria-expanded="false">
+              <a class="sidebar-link" href="{{url('/pembelian')}}" aria-expanded="false">
                 <span>
                   <i class="ti ti-user-plus"></i>
                 </span>
