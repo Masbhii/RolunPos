@@ -50,11 +50,11 @@
                                     <tbody>
                                     @foreach ($supplier as $p)
                                         <tr>
-                                        <th>Kode Supplier</th>
-                                            <td>Nama Perushaan</td>
-                                            <td>Alamat</td>
-                                            <td>Nomor_Telepon</td>
-                                            <td>Kategori_Produk</td>
+                                        <th>{{ $p->kode_supplier }}</th>
+                                            <td>{{ $p->nama_perusahaan }}</td>
+                                            <td>{{ $p->alamat }}</td>
+                                            <td>{{ $p->nomor_telepon }}</td>
+                                            <td>{{ $p->kategori_produk }}</td>
                                             <td>
                                                     <a href="{{ route('supplier.edit', $p->id) }}" class="btn btn-success btn-icon-split btn-sm">
                                                         <span class="icon text-white-50">

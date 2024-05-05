@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4">{{ $kode_supplier }}</h5>
+            <h5 class="card-title fw-semibold mb-4">Tambah Supplier</h5>
 
                 <!-- Display Error jika ada error -->
                 @if ($errors->any())

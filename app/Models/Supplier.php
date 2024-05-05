@@ -12,11 +12,11 @@ class Supplier extends Model
     protected $table = 'supplier';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'kode_supplier' => 'required',
-            'nama_perusahaan' => 'required',
-            'alamat' => 'required',
-            'nomor_telepon' => 'required',
-            'kategori_produk' => 'required',
+        'kode_supplier',
+        'nama_perusahaan',
+        'alamat',
+        'nomor_telepon',
+        'kategori_produk',
     ];
 
     public static function getKodeSupplier()

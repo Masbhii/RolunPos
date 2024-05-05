@@ -32,7 +32,7 @@ class SupplierController extends Controller
         $Supplier = new Supplier();
         return view('supplier/create',
                     [
-                        'kode_supllier' => $Supplier->getKodeSupplier()
+                        'kode_supplier' => $Supplier->getKodeSupplier()
                     ]
                   );
         // return view('supplier/view');
@@ -69,7 +69,7 @@ class SupplierController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Supplier $Supplier)
+    public function edit(Supplier $supplier)
     {
         return view('supplier.edit', compact('supplier'));
     }

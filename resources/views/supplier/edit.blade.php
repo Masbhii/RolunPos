@@ -27,22 +27,22 @@
 
                     <div class="mb-3">
                         <label for="nama_perusahaan">Nama Perusahaan</label>
-                        <input class="form-control form-control-solid" id="nama_perusahaan" name="nama_perusahaan" type="text" value="{{$perusahaan->nama_perusahaan}}">
+                        <input class="form-control form-control-solid" id="nama_perusahaan" name="nama_perusahaan" type="text" value="{{$supplier->nama_perusahaan}}">
                     </div>
 
                     <div class="mb-0">
                         <label for="alamat">Alamat</label>
-                        <input class="form-control form-control-solid" id="alamat" name="alamat" type="text" value="{{$barang->alamat}}">
+                        <input class="form-control form-control-solid" id="alamat" name="alamat" type="text" value="{{$supplier->alamat}}">
                     </div>  
 
                     <div class="mb-0">
                         <label for="nomor_telepon">Nomor Telepon</label>
-                        <input class="form-control form-control-solid" id="nomor_telepon" name="nomor_telepon" type="text" value="{{$barang->nomor_telepon}}">
+                        <input class="form-control form-control-solid" id="nomor_telepon" name="nomor_telepon" type="text" value="{{$supplier->nomor_telepon}}">
                     </div> 
 
                     <div class="mb-0">
-                        <label for="nama_produk">Nama Produk</label>
-                        <input class="form-control form-control-solid" id="nama_produk" name="nama_produk" type="text" value="{{$barang->nama_produk}}">
+                        <label for="kategori_produk">kategori Produk</label>
+                        <input class="form-control form-control-solid" id="kategori_produk" name="kategori_produk" type="text" value="{{$supplier->kategori_produk}}">
                     </div>   
                     
                     <br>
