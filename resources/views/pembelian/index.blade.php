@@ -1,53 +1,140 @@
 <x-app-layout>
     <div class="container-fluid">
         <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header">Pembelian List</div>
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <h5 class="card-title fw-semibold mb-4"></h5>
+                  <div class="card">
 
-                        <div class="card-body">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Tanggal Pembelian</th>
-                                        <th>No Pembelian</th>
-                                        <th>Keterangan</th>
-                                        <th>Status</th>
-                                        <th>Tgl Jatuh Tempo</th>
-                                        <th>Kuantitas</th>
-                                        <th>Harga</th>
-                                        <th>ID Barang</th>
-                                        <th>ID Pegawai</th>
-                                        <th>ID Supplier</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($pembelians as $pembelian)
+                        <!-- Card Header - Dropdown -->
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">Master Data pegawai</h6>
+                            
+                            <!-- Tombol Tambah Data -->
+                            <a href="{{ url('/pegawai/create') }}" class="btn btn-primary btn-icon-split btn-sm">
+                                <span class="icon text-white-50">
+                                    <i class="ti ti-plus"></i>
+                                </span>
+                                <span class="text">Tambah Data</span>
+                            </a>
+                            <!-- Akghir Tombol Tambah Data -->
+
+                        </div>
+
+                    <div class="card-body">
+                      <!-- Awal Dari Tabel -->
+                    <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead class="thead-dark">
                                         <tr>
-                                            <td>{{ $pembelian->tgl_pembelian }}</td>
-                                            <td>{{ $pembelian->no_pembelian }}</td>
-                                            <td>{{ $pembelian->keterangan }}</td>
-                                            <td>{{ $pembelian->status }}</td>
-                                            <td>{{ $pembelian->tgl_jatuh_tempo }}</td>
-                                            <td>{{ $pembelian->kuantitas }}</td>
-                                            <td>{{ $pembelian->harga }}</td>
-                                            <td>{{ $pembelian->id_barang }}</td>
-                                            <td>{{ $pembelian->id_pegawai }}</td>
-                                            <td>{{ $pembelian->id_supplier }}</td>
+                                            <th>Kode pegawai</th>
+                                            <th>Nama pegawai</th>
+                                            <th>Jabatan</th>
+                                            <th>Nomor Telepon pegawai</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot class="thead-dark">
+                                        <tr>
+                                            <th>Kode pegawai</th>
+                                            <th>Nama pegawai</th>
+                                            <th>Jabatan</th>
+                                            <th>Nomor Telepon pegawai</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    @foreach ($pegawai as $p)
+                                        <tr>
+                                            <td>{{ $p->kode_pegawai }}</td>
+                                            <td>{{ $p->nama_pegawai }}</td>
+                                            <td>{{ $p->jabatan }}</td>
+                                            <td>{{ $p->nomor_telepon }}</td>
+                                            <td>{{ $p->jenis_kelamin }}</td>
                                             <td>
-                                                <a href="{{ route('pembelians.edit', $pembelian->id) }}" class="btn btn-primary">Edit</a>
-                                                <a href="{{ route('pembelians.destroy', $pembelian->id) }}" class="btn btn-danger">Delete</a>
+                                                    <a href="{{ route('pegawai.edit', $p->id_pegawai) }}" class="btn btn-success btn-icon-split btn-sm">
+                                                        <span class="icon text-white-50">
+                                                            <i class="ti ti-check"></i>
+                                                        </span>
+                                                        <span class="text">Ubah</span>
+                                                    </a>
+
+                                                    <a href="#" onclick="deleteConfirm(this); return false;" data-id="{{ $p->id_pegawai }}" class="btn btn-danger btn-icon-split btn-sm">
+                                                        <span class="icon text-white-50">
+                                                            <i class="ti ti-minus"></i>
+                                                        </span>
+                                                        <span class="text">Hapus</span>
+                                                    </a>
+
                                             </td>
                                         </tr>
                                     @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                    </tbody>
+                                </table>
+                            </div>
+                    <!-- Akhir Dari Tabel -->
                     </div>
+                  </div>
+                </div>
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    
+
+
+        <script>
+            function deleteConfirm(e){
+                var tomboldelete = document.getElementById('btn-delete')  
+                id = e.getAttribute('data-id');
+
+                // const str = 'Hello' + id + 'World';
+                var url3 = "{{url('pegawai/destroy/')}}";
+                var url4 = url3.concat("/",id);
+                // console.log(url4);
+
+                // console.log(id);
+                // var url = "{{url('perusahaan/destroy/"+id+"')}}";
+                
+                // url = JSON.parse(rul.replace(/"/g,'"'));
+                tomboldelete.setAttribute("href", url4); //akan meload kontroller delete
+
+                var pesan = "Data dengan ID <b>"
+                var pesan2 = " </b>akan dihapus"
+                var res = id;
+                document.getElementById("xid").innerHTML = pesan.concat(res,pesan2);
+
+                var myModal = new bootstrap.Modal(document.getElementById('deleteModal'), {  keyboard: false });
+                
+                myModal.show();
+            
+            }
+        </script>
+
+        <!-- Logout Delete Confirmation-->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Apakah anda yakin?</h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        x
+                    </button>
+                </div>
+                <div class="modal-body" id="xid"></div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
+                    <a id="btn-delete" class="btn btn-danger" href="#">Hapus</a>
+                    
+                </div>
                 </div>
             </div>
         </div>
-    </div>
 </x-app-layout>
