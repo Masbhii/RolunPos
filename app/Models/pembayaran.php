@@ -48,14 +48,14 @@ class Pembayaran extends Model
         $sql = "SELECT a.id,a.no_transaksi,DATE_FORMAT(a.tgl_bayar,'%Y-%m-%d') as tgl_bayar,a.tgl_konfirmasi,a.bukti_bayar,
                         a.jenis_pembayaran,a.status,
                         b.total_harga,
-                        GROUP_CONCAT(d.nama_barang ORDER BY d.nama_barang) as list_barang
+                        GROUP_CONCAT(d.nama_produk ORDER BY d.nama_produk) as list_barang
                 FROM pembayaran a
                 LEFT OUTER JOIN penjualan b
                 ON (a.no_transaksi=b.no_transaksi)
                 LEFT OUTER JOIN penjualan_detail c
                 ON (b.no_transaksi=c.no_transaksi)
-                LEFT OUTER JOIN barang d
-                ON (c.id_barang=d.id)
+                LEFT OUTER JOIN produk d
+                ON (c.kd_produk=d.id)
                 GROUP BY a.id,a.no_transaksi,DATE_FORMAT(a.tgl_bayar,'%Y-%m-%d'),a.tgl_konfirmasi,a.bukti_bayar,
                         a.jenis_pembayaran,a.status,
                         b.total_harga";
@@ -71,14 +71,14 @@ class Pembayaran extends Model
         $sql = "SELECT a.id,a.no_transaksi,a.tgl_bayar,a.tgl_konfirmasi,a.bukti_bayar,
                         a.jenis_pembayaran,a.status,
                         b.total_harga,
-                        GROUP_CONCAT(d.nama_barang ORDER BY d.nama_barang) as list_barang
+                        GROUP_CONCAT(d.kode_produk ORDER BY d.nama_produk) as list_barang
                 FROM pembayaran a
                 LEFT OUTER JOIN penjualan b
                 ON (a.no_transaksi=b.no_transaksi)
                 LEFT OUTER JOIN penjualan_detail c
                 ON (b.no_transaksi=c.no_transaksi)
-                LEFT OUTER JOIN barang d
-                ON (c.id_barang=d.id)
+                LEFT OUTER JOIN produk d
+                ON (c.kd_produk=d.id)
                 WHERE b.id_customer = ?
                 GROUP BY a.id,a.no_transaksi,a.tgl_bayar,a.tgl_konfirmasi,a.bukti_bayar,
                         a.jenis_pembayaran,a.status,
@@ -98,7 +98,7 @@ class Pembayaran extends Model
                 ON (b.id=c.id_penjualan)
                 WHERE b.id_customer = ? AND b.status in ('selesai','siap_bayar')
                 AND b.no_transaksi NOT IN 
-                (SELECT no_transaksi FROM pembayaran WHERE jenis_pembayaran = 'tunai')
+                (SELECT no_transaksi FROM pembayaran WHERE jenis_pembayaran = 'qris')
                 ";
         $list = DB::select($sql,[$id_customer]);
 
@@ -115,7 +115,7 @@ class Pembayaran extends Model
                 ON (b.id=c.id_penjualan)
                 WHERE b.status in ('siap_bayar')
                 AND b.no_transaksi NOT IN 
-                (SELECT no_transaksi FROM pembayaran WHERE jenis_pembayaran = 'tunai')
+                (SELECT no_transaksi FROM pembayaran WHERE jenis_pembayaran = 'qris')
                 ";
         $list = DB::select($sql);
 
