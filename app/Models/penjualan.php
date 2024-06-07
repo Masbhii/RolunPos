@@ -16,7 +16,7 @@ class Penjualan extends Model
     protected $fillable = ['no_transaksi','id_customer','tgl_transaksi','tgl_expired','total_harga','status'];
 
     // untuk melihat data barang
-    public function getBarang()
+    public static function getBarang()
     {
         // query ke tabel barang
         $sql = "SELECT * FROM barang";
@@ -25,7 +25,7 @@ class Penjualan extends Model
     }
 
     // untuk melihat data barang berdasarkan id
-    public function getBarangId($id)
+    public static function getBarangId($id)
     {
         $sql = "SELECT * FROM barang WHERE id = ?";
         $barang = DB::select($sql,[$id]);
@@ -33,7 +33,7 @@ class Penjualan extends Model
     }
 
     // untuk melihat data invoice
-    public function getListInvoice($id_customer)
+    public static function getListInvoice($id_customer)
     {
         $penjualan = Penjualan::where('id_customer', $id_customer)
                                 ->where('status', 'siap_bayar')
@@ -42,7 +42,7 @@ class Penjualan extends Model
     }
 
     // cekout
-    public function checkout($id_customer)
+    public static function checkout($id_customer)
     {
 
         // dapatkan nomor transaksinya
@@ -69,7 +69,7 @@ class Penjualan extends Model
     }
 
     // lihat stok barang
-    public function getStock($id_barang){
+    public static function getStock($id_barang){
         $sql = "SELECT stok FROM barang WHERE id = ?";
         $barang = DB::select($sql,[$id_barang]);
         foreach($barang as $b):
@@ -79,7 +79,7 @@ class Penjualan extends Model
     }
 
     // lihat id ke berapa status pemesanan si customer
-    public function getIdStatus($id_customer){
+    public static function getIdStatus($id_customer){
         $sql = "SELECT ifnull(max(a.id),0) as id 	 
                 FROM status_pemesanan a 
                 JOIN ( 
@@ -105,7 +105,7 @@ class Penjualan extends Model
     }
 
     // lihat status pemesanan berdasarkan id customer
-    public function getStatusAll($id_customer){
+    public static function getStatusAll($id_customer){
         
         $sql = "SELECT a.*,b.status as status_customer,b.waktu as tgl_transaksi 
                 FROM status_pemesanan a LEFT OUTER JOIN 
@@ -116,14 +116,14 @@ class Penjualan extends Model
         return $status_pemesanan;
     }
 
-    public function tes(){
+    public static function tes(){
         $penjualan = new Penjualan;
         $faktur = $penjualan->getInvoiceNumber();
         return $faktur;
     }
 
     // dapatkan nomor faktur yang baru
-    public function getInvoiceNumber(){
+    public static function getInvoiceNumber(){
         $sql = "SELECT SUBSTRING(IFNULL(MAX(no_transaksi),'FK-0000'),4)+0 AS no 
                 FROM penjualan";
         $barang = DB::select($sql);
@@ -141,7 +141,7 @@ class Penjualan extends Model
     }
 
     // prosedur input data penjualan 
-    public function inputPenjualan($id_customer,$total_harga,$id_barang,$jml_barang,$harga_barang,$total){
+    public static function inputPenjualan($id_customer,$total_harga,$id_barang,$jml_barang,$harga_barang,$total){
         
         // instansiasi obyek
         $penjualan = new Penjualan;
@@ -417,7 +417,7 @@ class Penjualan extends Model
     }
 
     // view keranjang belanja
-    public function viewKeranjang($id_customer){
+    public static function viewKeranjang($id_customer){
         $sql = "SELECT  a.no_transaksi,
                         c.nama_barang,
                         c.foto,
@@ -441,7 +441,7 @@ class Penjualan extends Model
 
     // view data siap bayar
     // view keranjang belanja
-    public function viewSiapBayar($id_customer){
+    public static function viewSiapBayar($id_customer){
         $sql = "SELECT  a.no_transaksi,
                         c.nama_barang,
                         c.foto,
@@ -464,7 +464,7 @@ class Penjualan extends Model
         return $barang;
     }
 
-    public function jmlviewSiapBayar($id_customer){
+    public static function jmlviewSiapBayar($id_customer){
         $sql = "SELECT  count(*) as jml
                 FROM penjualan a
                 JOIN penjualan_detail b
@@ -478,7 +478,7 @@ class Penjualan extends Model
     }
 
     // untuk menghapus data penjualan detail
-    public function hapuspenjualandetail($id_penjualan_detail){
+    public static function hapuspenjualandetail($id_penjualan_detail){
         // dapatkan nomor transaksi dulu
         $sql = "SELECT  no_transaksi
                 FROM penjualan_detail
@@ -509,7 +509,7 @@ class Penjualan extends Model
     }
 
     // kembalikan stok
-    public function kembalikanstok($id_penjualan_detail){
+    public static function kembalikanstok($id_penjualan_detail){
         $penjualan = new Penjualan;
         $sql = "SELECT jml_barang,id_barang FROM penjualan_detail WHERE id = ?";
         $barang = DB::select($sql,[$id_penjualan_detail]);
@@ -526,7 +526,7 @@ class Penjualan extends Model
     }
 
     // dapatkan jumlah barang
-    public function getJmlBarang($id_customer){
+    public static function getJmlBarang($id_customer){
         $sql = "SELECT count(*) as jml FROM penjualan_detail 
                 WHERE no_transaksi IN 
                 (SELECT no_transaksi FROM penjualan 
@@ -540,7 +540,7 @@ class Penjualan extends Model
         return $jml;
     }
 
-    public function getJmlInvoice($id_customer){
+    public static function getJmlInvoice($id_customer){
         $sql = "SELECT count(*) as jml FROM penjualan 
                 WHERE status = 'siap_bayar' AND id_customer = ?";
         $barang = DB::select($sql,[$id_customer]);

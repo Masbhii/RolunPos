@@ -11,7 +11,6 @@ use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PenjualanController;
-use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\GrafikController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
