@@ -14,14 +14,14 @@ class Pembelian extends Model
     protected $table = 'pembelian';
     protected $primaryKey = 'id';
     // list kolom yang bisa diisi
-    protected $fillable = ['nomor_pembelian', 'tanggal_pembelian', 'kode_barang', 'harga', 'kuantitas', 'foto','deskripsi','harga'];
+    protected $fillable = ['nomor_pembelian', 'tanggal_pembelian', 'id_barang', 'harga', 'kuantitas', 'foto','deskripsi','harga'];
 
     // query nilai max dari kode pegawai untuk generate otomatis kode pegawai
 
     public function getNomorPembelian()
     {
         // query kode pegawai
-        $sql = "SELECT IFNULL(MAX(no_pembelian), 'PB-000') as nomor_pembelian 
+        $sql = "SELECT IFNULL(MAX(nomor_pembelian), 'PB-000') as nomor_pembelian 
                 FROM pembelian";
         $nomor_pembelian = DB::select($sql);
 

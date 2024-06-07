@@ -177,9 +177,7 @@
                         // console.log(response);
                         // xperusahaan
                         var tebal = "<b>";
-                        var namaperusahaan = response.perusahaan.nama_perusahaan;
                         var akhirtebal = "</b>";
-                        document.getElementById("xperusahaan").innerHTML = tebal.concat(namaperusahaan,akhirtebal);
 
                         //xperiode 
                         var awalanperiode = "Periode ";

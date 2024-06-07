@@ -16,12 +16,9 @@ return new class extends Migration
             $table->id();
             $table->string('nomor_pembelian');
             $table->dateTime('tanggal_pembelian');
-            $table->string('kode_bahanbaku');
+            $table->string('id_barang');
             $table->integer('harga');
             $table->integer('kuantitas');
-            $table->string('foto');
-            $table->integer('deskripsi');
-            $table->integer('harga');
             $table->timestamps();
         });
     }

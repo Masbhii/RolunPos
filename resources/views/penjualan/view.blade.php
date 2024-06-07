@@ -36,8 +36,8 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-4">
-                                                <a data-fancybox="gallery" href="{{url('barang/')}}/{{ $p->foto }}">
-                                                    <img width="150px" height="150px" id="x-2" src="{{url('barang/')}}/{{ $p->foto }}" zn_id="79">
+                                                <a data-fancybox="gallery" href="{{url('fotobarang/')}}/{{ $p->foto }}">
+                                                    <img width="150px" height="150px" id="x-2" src="{{url('fotobarang/')}}/{{ $p->foto }}" zn_id="79">
                                                 </a>
                                             </div>
                                             <div class="col-4" align="justify">

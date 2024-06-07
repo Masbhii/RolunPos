@@ -16,6 +16,10 @@ return new class extends Migration
             $table->string('kode_barang');
             $table->string('nama_barang');
             $table->string('satuan');
+            $table->text('deskripsi');
+            $table->string('foto');
+            $table->integer('harga');
+            $table->integer('stok');
             $table->timestamps();
         });
     }

@@ -31,13 +31,13 @@
                                         <tr>
                                             <td>{{ $p->no_transaksi }}</td>
                                             <td>
-                                                <img width="150px" height="150px" id="x-2" src="{{url('menu/')}}/{{ $p->foto }}" zn_id="79">
-                                                <br>{{ $p->nama_menu }}
+                                                <img width="150px" height="150px" id="x-2" src="{{url('fotobarang/')}}/{{ $p->foto }}" zn_id="79">
+                                                <br>{{ $p->nama_barang }}
                                             </td>
                                             <td>
                                                 <ul>
                                                     <li>Harga   : Rp {{number_format($p->harga)}}</li>
-                                                    <li>Jumlah  : {{$p->jml_menu}}</li>
+                                                    <li>Jumlah  : {{$p->jml_barang}}</li>
                                                     <li>Total   : <b>Rp {{number_format($p->total)}}</b></li>
                                                 </ul>  
                                             </td>

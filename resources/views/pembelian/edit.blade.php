@@ -31,10 +31,10 @@
                   <input class="form-control form-control-solid" id="tanggal_pembelian" name="tanggal_pembelian" type="date"  value="{{$pembelian->tanggal_pembelian}}">
                   </div>
 
-                  <div class="mb-3"><label for="kode_bahanbaku">Kode Bahan Baku</label>
-                  <select name="kode_bahanbaku" id="kode_bahanbaku">
-                    @foreach($bahanbaku as $b)
-                    <option value="{{$b->kode_bahanbaku}}">{{$b->nama_bahanbaku}}</option>
+                  <div class="mb-3"><label for="id_barang">Kode Bahan Baku</label>
+                  <select name="id_barang" id="id_barang">
+                    @foreach($barang as $b)
+                    <option value="{{$b->id}}">{{$b->nama_barang}}</option>
                     @endforeach
                   </select>
                   </div>
@@ -45,18 +45,6 @@
 
                     <div class="mb-3"><label for="kuantitas">Kuantitas</label>
                       <input class="form-control form-control-solid" id="kuantitas" name="kuantitas" type="text"  value="{{$pembelian->kuantitas}}">
-                      </div>
-
-                    <div class="mb-3"><label for="tanggal_pembelian">Tanggal Pembelian</label>
-                      <input class="form-control form-control-solid" id="tanggal_pembelian" name="tanggal_pembelian" type="date"  value="{{$pembelian->tanggal_pembelian}}">
-                      </div>
-
-                    <div class="mb-3"><label for="foto">Foto</label>
-                      <input class="form-control form-control-solid" id="foto" name="foto" type="integer"  value="{{$pembelian->foto}}">
-                      </div>
-
-                    <div class="mb-3"><label for="deskripsi">Deskripsi</label>
-                      <input class="form-control form-control-solid" id="deskripsi" name="deskripsi" type="text"  value="{{$pembelian->deskripsi}}">
                       </div>
                     <br>
                     <!-- untuk tombol simpan -->

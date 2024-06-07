@@ -17,6 +17,7 @@ class Jurnal extends Model
     // untuk melist kolom yang dapat dimasukkan
     protected $fillable = [
         'id_transaksi',
+        'id_perusahaan',
         'kode_akun',
         'tgl_jurnal',
         'posisi_d_c',
@@ -43,7 +44,7 @@ class Jurnal extends Model
         // periode memiliki format YYYY-MM
          $sql = "   SELECT b.kode_akun, b.nama_akun
                     FROM jurnal a JOIN coa b 
-                    ON (a.kode_akun=b.kode_akun) 
+                    ON (a.kode_akun=b.kode_akun)
                     GROUP BY b.kode_akun, b.nama_akun
                     ORDER BY 2 ASC
                 ";
@@ -127,7 +128,7 @@ class Jurnal extends Model
                         Select a.posisi_d_c,sum(a.nominal) as total
                         FROM jurnal a
                         JOIN coa b ON (a.kode_akun=b.kode_akun)
-                        WHERE a.kode_akun = ? AND a.id_perusahaan = ?
+                        WHERE a.kode_akun = ?
                         AND date_format(a.tgl_jurnal,'%Y-%m') < ?
                         GROUP BY  a.posisi_d_c
                     ) tbl2

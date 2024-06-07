@@ -56,12 +56,9 @@ class PembelianController extends Controller
         $validated = $request->validate([
             'nomor_pembelian' => 'required',
             'tanggal_pembelian' => 'required',
-            'kode_barang' => 'required',
+            'id_barang' => 'required',
             'harga' => 'required',
             'kuantitas' => 'required',
-            'kuantitas' => 'required',
-            'foto' => 'required',
-            'deskripsi' => 'required',
             'harga' => 'required',
         ]);
 
@@ -96,12 +93,9 @@ class PembelianController extends Controller
         $validated = $request->validate([
             'nomor_pembelian' => 'required',
             'tanggal_pembelian' => 'required',
-            'kode_barang' => 'required',
+            'id_barang' => 'required',
             'harga' => 'required',
             'kuantitas' => 'required',
-            'kuantitas' => 'required',
-            'foto' => 'required',
-            'deskripsi' => 'required',
             'harga' => 'required',
         ]);
 

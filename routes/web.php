@@ -10,6 +10,8 @@ use App\Http\Controllers\CoaController;
 use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\GrafikController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
@@ -51,9 +53,6 @@ Route::get('/supplier/destroy/{id}',[SupplierController::class, 'destroy'])->mid
 Route::resource('/pembelian', PembelianController::class)->middleware(['auth']);
 Route::get('/pembelian/destroy/{id}',[PembelianController::class, 'destroy'])->middleware(['auth']);
 
-Route::resource('/penjualan', PenjualanController::class)->middleware(['auth']);
-Route::get('/penjualan/destroy/{id}',[PenjualanController::class, 'destroy'])->middleware(['auth']);
-
 Route::get('jurnal/umum', [App\Http\Controllers\JurnalController::class,'jurnalumum'])->middleware(['auth']);
 Route::get('jurnal/viewdatajurnalumum/{periode}', [App\Http\Controllers\JurnalController::class,'viewdatajurnalumum'])->middleware(['auth']);
 Route::get('jurnal/bukubesar', [App\Http\Controllers\JurnalController::class,'bukubesar'])->middleware(['auth']);
@@ -71,5 +70,34 @@ Route::get('penjualan/invoice', [App\Http\Controllers\PenjualanController::class
 Route::get('penjualan/jmlinvoice', [App\Http\Controllers\PenjualanController::class,'getInvoice'])->middleware(['auth']);
 Route::get('penjualan/status', [App\Http\Controllers\PenjualanController::class,'viewstatus'])->middleware(['auth']);
 Route::resource('penjualan', PenjualanController::class)->middleware(['auth']);
+
+//grafik
+Route::get('grafik/viewPenjualanBlnBerjalan', [App\Http\Controllers\GrafikController::class,'viewPenjualanBlnBerjalan'])->middleware(['auth']);
+Route::get('grafik/viewJmlPenjualan', [App\Http\Controllers\GrafikController::class,'viewJmlPenjualan'])->middleware(['auth']);
+Route::get('grafik/viewJmlBarangTerjual', [App\Http\Controllers\GrafikController::class,'viewJmlBarangTerjual'])->middleware(['auth']);
+
+// transaksi pembayaran viewkeranjang
+Route::get('pembayaran/viewkeranjang', [App\Http\Controllers\PembayaranController::class,'viewkeranjang'])->middleware(['auth']);
+Route::get('pembayaran/viewstatus', [App\Http\Controllers\PembayaranController::class,'viewstatus'])->middleware(['auth']); 
+Route::get('pembayaran/viewapprovalstatus', [App\Http\Controllers\PembayaranController::class,'viewapprovalstatus'])->middleware(['auth']);
+Route::get('pembayaran/approve/{no_transaksi}', [App\Http\Controllers\PembayaranController::class,'approve'])->middleware(['auth']);
+Route::get('pembayaran/unapprove/{no_transaksi}', [App\Http\Controllers\PembayaranController::class,'unapprove'])->middleware(['auth']);
+Route::get('pembayaran/viewstatusPG', [App\Http\Controllers\PembayaranController::class,'viewstatusPG'])->middleware(['auth']);
+Route::resource('pembayaran', PembayaranController::class)->middleware(['auth']);
+
+// untuk berita
+Route::get('berita', [App\Http\Controllers\BeritaController::class,'index'])->middleware(['auth']);
+Route::get('berita/galeri', [App\Http\Controllers\BeritaController::class,'getNews'])->middleware(['auth']);
+Route::get('berita2', [App\Http\Controllers\Berita2Controller::class,'index'])->middleware(['auth']);
+Route::get('berita2/galeri', [App\Http\Controllers\Berita2Controller::class,'getNews'])->middleware(['auth']);
+Route::get('berita3', [App\Http\Controllers\Berita3Controller::class,'index'])->middleware(['auth']);
+Route::get('berita3/galeri', [App\Http\Controllers\Berita3Controller::class,'getNews'])->middleware(['auth']);
+
+// untuk midtrans
+Route::get('midtrans', [App\Http\Controllers\CobaMidtransController::class,'index'])->middleware(['auth']);
+Route::get('midtrans/status', [App\Http\Controllers\CobaMidtransController::class,'cekstatus2'])->middleware(['auth']);
+Route::get('midtrans/status2/{id}', [App\Http\Controllers\CobaMidtransController::class,'cekstatus'])->middleware(['auth']);
+Route::get('midtrans/bayar', [App\Http\Controllers\CobaMidtransController::class,'bayar'])->middleware(['auth']);
+Route::post('midtrans/proses_bayar', [App\Http\Controllers\CobaMidtransController::class,'proses_bayar'])->middleware(['auth']);
 
 require __DIR__.'/auth.php';

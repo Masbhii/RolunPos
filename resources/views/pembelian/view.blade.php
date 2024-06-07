@@ -35,7 +35,6 @@
                                             <th>Harga</th>
                                             <th>Kuantitas</th>
                                             <th>Aksi</th>
-                                            <th>Deskripsi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -43,10 +42,9 @@
                                         <tr>
                                             <td>{{ $p->nomor_pembelian }}</td>
                                             <td>{{ $p->tanggal_pembelian }}</td>
-                                            <td>{{ $p->nama_bahanbaku }}</td>
+                                            <td>{{ $p->nama_barang }}</td>
                                             <td>{{ $p->harga }}</td>
                                             <td>{{ $p->kuantitas }}</td>
-                                            <td>{{ $p->Deskripsi }}</td>
                                             <td>
                                                     <a href="{{ route('pembelian.edit', $p->id) }}" class="btn btn-success btn-icon-split btn-sm">
                                                         <span class="icon text-white-50">

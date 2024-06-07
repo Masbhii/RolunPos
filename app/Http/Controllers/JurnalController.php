@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Jurnal;
-use App\Models\Perusahaan;
+use App\Models\jurnal;
 use App\Http\Requests\StoreJurnalRequest;
 use App\Http\Requests\UpdateJurnalRequest;
 
-class JurnalController extends Controller
+class jurnalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -99,7 +98,7 @@ class JurnalController extends Controller
         {
             return response()->json([
                 'status'=>200,
-                'jurnal'=> $jurnal
+                'jurnal'=> $jurnal,
             ]);
         }
         else

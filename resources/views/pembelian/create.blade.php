@@ -29,10 +29,10 @@
                     <input class="form-control form-control-solid" id="tanggal_pembelian" name="tanggal_pembelian" type="date"  value="{{old('tanggal_pembelian')}}">
                     </div>
 
-                    <div class="mb-3"><label for="kode_barang">Kode Barang</label>
-                    <select name="kode_barang" id="kode_barang">
+                    <div class="mb-3"><label for="id_barang">Kode Barang</label>
+                    <select name="id_barang" id="id_barang">
                       @foreach($barang as $b)
-                      <option value="{{$b->kode_barang}}">{{$b->nama_barang}}</option>
+                      <option value="{{$b->id}}">{{$b->nama_barang}}</option>
                       @endforeach
                     </select>
                     </div>
@@ -43,10 +43,6 @@
 
                       <div class="mb-3"><label for="kuantitas">Kuantitas</label>
                         <input class="form-control form-control-solid" id="kuantitas_tampil" name="kuantitas" type="text"  value="{{old('kuantitas')}}">
-                        </div>
-
-                      <div class="mb-3"><label for="deskripsi">Deskripsi</label>
-                        <input class="form-control form-control-solid" id="Deskripsi" name="deskripsi" type="text"  value="{{old('deskripsi')}}">
                         </div>
         
                     
