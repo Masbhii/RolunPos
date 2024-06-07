@@ -21,13 +21,14 @@ class PembayaranController extends Controller
      */
     public function index()
     {
-        // // getViewBarang()
-        $barang = Penjualan::getBarang();
+
+        // // getViewProduk()
+        $produk = Penjualan::getProduk();
         $id_customer = Auth::id();
         return view('penjualan.view',
                 [
-                    'barang' => $barang,
-                    'jml' => Penjualan::getJmlBarang($id_customer),
+                    'produk' => $produk,
+                    'jml' => Penjualan::getJmlProduk($id_customer),
                     'jml_invoice' => Penjualan::getJmlInvoice($id_customer),
                 ]
         );
@@ -59,7 +60,8 @@ class PembayaranController extends Controller
         if($validated){
             // berhasil
             
-            if($request->input('tipeproses')=='tunai'){
+
+            if($request->input('tipeproses')=='qris'){
 
                 $file = $request->file('bukti_bayar');
                 $fileName = time() . '.' . $file->getClientOriginalExtension();
@@ -67,7 +69,9 @@ class PembayaranController extends Controller
 		        $file->move($tujuan_upload,$fileName);
 
                 // simpan data
-                $empData = ['no_transaksi' => $request->input('no_transaksi'), 'tgl_bayar' => $request->input('tgl_bayar'), 'bukti_bayar' => $fileName, 'jenis_pembayaran' => 'tunai', 'status' => 'menunggu_approve'];
+
+                $empData = ['no_transaksi' => $request->input('no_transaksi'), 'tgl_bayar' => $request->input('tgl_bayar'), 'bukti_bayar' => $fileName, 'jenis_pembayaran' => 'qris', 'status' => 'menunggu_approve', 'tgl_konfirmasi' => now()];
+
 		        Pembayaran::create($empData);
 
                 // update status menjadi konfirmasi bayar
