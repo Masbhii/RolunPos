@@ -33,6 +33,7 @@
                 <span class="hide-menu">Dashboard</span>
               </a>
             </li>
+            @if(Session::get('kelompok')=='admin')
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">Masterdata</span>
@@ -77,6 +78,7 @@
                 <span class="hide-menu">Typography</span>
               </a>
             </li>
+            @endif
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">Transaksi</span>

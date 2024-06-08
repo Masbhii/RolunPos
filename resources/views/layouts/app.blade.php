@@ -103,6 +103,8 @@
                 <span class="hide-menu">Rekomendasi Dessert</span>
               </a>
             </li>
+
+            @if(Session::get('kelompok') == "admin")
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">Master Data</span>
@@ -163,6 +165,7 @@
                 <span class="hide-menu">Supplier</span>
               </a>
             </li>
+            @endif
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">TRANSAKSI</span>
@@ -236,6 +239,7 @@
                 <span class="hide-menu">Pembayaran PG</span>
               </a>
             </li>
+            @if(Session::get('kelompok') == "admin")
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">Laporan</span>
@@ -290,6 +294,7 @@
                 <h6 class="fw-semibold fs-4 mb-6 text-dark w-85">Upgrade to pro</h6>
                 <a href="https://adminmart.com/product/modernize-bootstrap-5-admin-template/" target="_blank" class="btn btn-primary fs-2 fw-semibold lh-sm">Buy Pro</a>
               </div>
+              @endif
               <div class="unlimited-access-img">
                 <img src="../assets/images/backgrounds/rocket.png" alt="" class="img-fluid">
               </div>
@@ -341,7 +346,7 @@
                       <i class="ti ti-list-check fs-6"></i>
                       <p class="mb-0 fs-3">My Task</p>
                     </a>
-                    <a href="./authentication-login.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                    <a href="{{ url('/logout') }}" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
                   </div>
                 </div>
               </li>
