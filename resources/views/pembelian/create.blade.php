@@ -19,9 +19,6 @@
                 <!-- Awal Dari Input Form -->
                 <form action="{{ route('pembelian.store') }}" method="post">
                     @csrf
-                    <div class="mb-3">
-                        <label for="tgl_pembelian">Tanggal Pembelian</label>
-                        <input class="form-control form-control-solid" id="tgl_pembelian" name="tgl_pembelian" type="text" placeholder="Contoh: PG-001" value="{{$kode_pembelian}}" readonly>
                     <fieldset disabled>
                         <div class="mb-3"><label for="nomor_pembelianlabel">Nomor Pembelian</label>
                         <input class="form-control form-control-solid" id="nomor_pembelian_tampil" name="nomor_pembelian_tampil" type="text" placeholder="Contoh: PB-001" value="{{$nomor_pembelian}}" readonly></div>

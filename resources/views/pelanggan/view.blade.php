@@ -1,11 +1,11 @@
 <x-app-layout>
-    <div class="container-fluid">
+      <div class="container-fluid">
         <div class="container-fluid">
           <div class="card">
             <div class="card-body">
               <div class="row">
                 <div class="col-md-12">
-                  <h5 class="card-title fw-semibold mb-4"></h5>
+                  <h5 class="card-title fw-semibold mb-4">Pelanggan</h5>
                   <div class="card">
 
                         <!-- Card Header - Dropdown -->
@@ -29,28 +29,21 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th>Kode Pelanggan</th>
-                                            <th>Nama Pelanggan</th>
-                                            <th>Nomor Telepon Pelanggan</th>
+                                            <th>Kode</th>
+                                            <th>Nama</th>
+                                            <th>No Telepon</th>
+                                            <th>Alamat</th>
                                             <th>Jenis Kelamin</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tfoot class="thead-dark">
-                                        <tr>
-                                            <th>Kode Pelanggan</th>
-                                            <th>Nama Pelanggan</th>
-                                            <th>Nomor Telepon Pelanggan</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
                                     @foreach ($pelanggan as $p)
                                         <tr>
                                             <td>{{ $p->kode_pelanggan }}</td>
                                             <td>{{ $p->nama_pelanggan }}</td>
-                                            <td>{{ $p->nomor_telepon_pelanggan }}</td>
+                                            <td>{{ $p->no_tlp_pelanggan }}</td>
+                                            <td>{{ $p->alamat_pelanggan }}</td>
                                             <td>{{ $p->jenis_kelamin_pelanggan }}</td>
                                             <td>
                                                     <a href="{{ route('pelanggan.edit', $p->id_pelanggan) }}" class="btn btn-success btn-icon-split btn-sm">
@@ -83,8 +76,6 @@
             </div>
           </div>
         </div>
-    </div>
-    
 
 
         <script>
@@ -98,7 +89,7 @@
                 // console.log(url4);
 
                 // console.log(id);
-                // var url = "{{url('perusahaan/destroy/"+id+"')}}";
+                // var url = "{{url('pelanggan/destroy/"+id+"')}}";
                 
                 // url = JSON.parse(rul.replace(/"/g,'"'));
                 tomboldelete.setAttribute("href", url4); //akan meload kontroller delete
@@ -115,7 +106,7 @@
             }
         </script>
 
-        <!-- Logout Delete Confirmation-->
+        <!-- Modal Delete Confirmation-->
         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -127,11 +118,12 @@
                 </div>
                 <div class="modal-body" id="xid"></div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                     <a id="btn-delete" class="btn btn-danger" href="#">Hapus</a>
                     
                 </div>
                 </div>
             </div>
-        </div>
+        </div>   
+
 </x-app-layout>

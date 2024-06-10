@@ -6,6 +6,8 @@ use App\Models\Pelanggan;
 use App\Http\Requests\StorePelangganRequest;
 use App\Http\Requests\UpdatePelangganRequest;
 
+use Illuminate\Foundation\Http\FormRequest;
+
 class PelangganController extends Controller
 {
     /**
@@ -13,8 +15,13 @@ class PelangganController extends Controller
      */
     public function index()
     {
-        $pelanggan = Pelanggan::all();
-        return view('pelanggan.index', ['pelanggan' => $pelanggan]);
+       //query data
+       $pelanggan = Pelanggan::all();
+       return view('pelanggan.view',
+                   [
+                       'pelanggan' => $pelanggan
+                   ]
+                 );
     }
 
     /**
@@ -22,8 +29,12 @@ class PelangganController extends Controller
      */
     public function create()
     {
-        $pelanggan = new Pelanggan();
-        return view('pelanggan.create', ['kode_pelanggan' => $pelanggan->getKodePelanggan()]);
+        //
+        return view('pelanggan/create',
+        [
+            'kode_pelanggan' => Pelanggan::getKodePelanggan()
+        ]
+      );
     }
 
     /**
@@ -31,10 +42,12 @@ class PelangganController extends Controller
      */
     public function store(StorePelangganRequest $request)
     {
+        //digunakan untuk validasi kemudian kalau ok tidak ada masalah baru disimpan ke db
         $validated = $request->validate([
             'kode_pelanggan' => 'required',
             'nama_pelanggan' => 'required',
-            'nomor_telepon_pelanggan' => 'required',
+            'no_tlp_pelanggan' => 'required',
+            'alamat_pelanggan' => 'required',
             'jenis_kelamin_pelanggan' => 'required',
         ]);
 
@@ -65,17 +78,18 @@ class PelangganController extends Controller
      */
     public function update(UpdatePelangganRequest $request, Pelanggan $pelanggan)
     {
+        //digunakan untuk validasi kemudian kalau ok tidak ada masalah baru diupdate ke db
         $validated = $request->validate([
             'kode_pelanggan' => 'required',
             'nama_pelanggan' => 'required',
-            'nomor_telepon_pelanggan' => 'required',
+            'no_tlp_pelanggan' => 'required',
+            'alamat_pelanggan' => 'required',
             'jenis_kelamin_pelanggan' => 'required',
         ]);
-        
+    
         $pelanggan->update($validated);
     
         return redirect()->route('pelanggan.index')->with('success','Data Berhasil di Ubah');
-
     }
 
     /**
@@ -83,10 +97,10 @@ class PelangganController extends Controller
      */
     public function destroy($id)
     {
-        $pelanggan = Pelanggan::find($id);
+        //hapus dari database
+        $pelanggan = Pelanggan::findOrFail($id);
         $pelanggan->delete();
 
         return redirect()->route('pelanggan.index')->with('success','Data Berhasil di Hapus');
-
     }
 }

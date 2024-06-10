@@ -32,8 +32,9 @@ Route::middleware('auth')->group(function () {
 Route::resource('/menu', MenuController::class)->middleware(['auth']);
 Route::get('/menu/destroy/{id}', [MenuController::class, 'destroy'])->middleware(['auth']);
 
+// route Pelanggan
 Route::resource('/pelanggan', PelangganController::class)->middleware(['auth']);
-Route::get('/pelanggan/destroy/{id}', [PelangganController::class, 'destroy'])->middleware(['auth']);
+Route::get('/pelanggan/destroy/{id}', [App\Http\Controllers\PelangganController::class,'destroy'])->middleware(['auth']);
 
 Route::resource('/pegawai', PegawaiController::class)->middleware(['auth']);
 Route::get('/pegawai/destroy/{id}', [PegawaiController::class, 'destroy'])->middleware(['auth']);
